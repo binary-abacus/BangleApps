@@ -1,4 +1,5 @@
-# Teacher Clock
+# Simplest Clock
 
-TESTTESTTESTTEST
+The simplest working clock, acts as a tutorial piece
 
+![](screenshot.jpg)
