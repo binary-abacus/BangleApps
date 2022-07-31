@@ -1,4 +1,4 @@
-# Simplest Clock
+# Teacher Clock
 
 The simplest working clock, acts as a tutorial piece
 
