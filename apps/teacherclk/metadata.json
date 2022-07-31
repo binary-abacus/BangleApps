@@ -1,0 +1,19 @@
+{
+  "id": "teacherclk",
+  "name": "Teacher Clock",
+  "version": "0.01",
+  "description": "A clock using the bold Anton font, optionally showing seconds and date in ISO-8601 format.",
+  "readme":"README.md",
+  "icon": "app.png",
+  "screenshots": [{"url":"screenshot.png"}],
+  "type": "clock",
+  "tags": "clock",
+  "supports": ["BANGLEJS","BANGLEJS2"],
+  "allow_emulator": true,
+  "storage": [
+    {"name":"teacherclk.app.js","url":"app.js"},
+    {"name":"teacherclk.settings.js","url":"settings.js"},
+    {"name":"teacherclk.img","url":"app-icon.js","evaluate":true}
+  ],
+  "data": [{"name":"teacherclk.json"}]
+}
