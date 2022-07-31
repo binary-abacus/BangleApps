@@ -1,12 +1,16 @@
-{ "id": "teacherclk",
+{
+  "id": "teacherclk",
   "name": "Teacher Clock",
-  "shortName":"Teacher Clock",
-  "icon": "app.png",
-  "version":"0.01",
-  "description": "A clock for teachers that want to know when class is over",
-  "tags": "",
+  "version": "0.06",
+  "description": "A clock for teachers",
+  "readme": "README.md",
+  "icon": "teacherclk.png",
+  "screenshots": [{"url":"screenshot_teacherclk.png"}],
+  "type": "clock",
+  "tags": "clock",
+  "supports": ["BANGLEJS","BANGLEJS2"],
   "storage": [
-    {"name":"teacherclk.app.js","url":"app.js"},
-    {"name":"teacherclk.img","url":"app-icon.js","evaluate":true}
+    {"name":"teacherclk.app.js","url":"teacherclk.app.js"},
+    {"name":"teacherclk.img","url":"teacherclk.icon.js","evaluate":true}
   ]
 }
