@@ -29,11 +29,13 @@ function draw() {
   day = require("locale").dow(date);
   layout.day.label = day.slice(0, 1).toUpperCase() + day.slice(1);
   layout.date.label = require("locale").date(date, 1).slice(0, -5);
-  layout.render();
   
   //update steps
   //layout.steps.label = '' + Bangle.getHealthStatus("day").steps;
   layout.steps.label = Bangle.getHealthStatus("day").steps;
+
+  //draw
+  layout.render();
   
   //schedule a draw for the next minute
   if (drawTimeout) clearTimeout(drawTimeout);
