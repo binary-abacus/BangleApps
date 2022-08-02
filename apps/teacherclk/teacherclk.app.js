@@ -6,7 +6,14 @@ Graphics.prototype.setFontAnton = function(scale) {
 var Layout = require("Layout");
 var layout = new Layout( {
   type:"v", c: [
-    {type:"txt", font:"10%", label:"Mar 02/08/2022", id:"date" },
+    {type:"h", c: [
+      {type:"v", fillx:1, c: [
+        {type:"txt", font:"10%", label:"Day", id:"day", },
+        {type:"txt", font:"10%", label:"dd/mm", id:"date" },
+      ]},
+      {type:"img", scale: 2, src:atob("CgoCLguH9f2/7+v6/79f56CtAAAD9fw/n8Hx9A==")},
+      {type:"txt", font:"10%", label:Bangle.getHealthStatus("day").steps, id:"steps", fillx:1}
+    ]},                    
     {type:"txt", font:"Anton", label:"12:00", id:"time" }
   ]
 }, {lazy:true});
@@ -19,11 +26,14 @@ function draw() {
   // update time and date
   var date = new Date(); 
   layout.time.label = require("locale").time(date, 1);
-  day = require("locale").dow(date, 1);
-  datestr = day.slice(0, 1).toUpperCase() + day.slice(1);
-  datestr += " " + require("locale").date(date, 1);
-  layout.date.label = datestr;
+  day = require("locale").dow(date);
+  layout.day.label = day.slice(0, 1).toUpperCase() + day.slice(1);
+  layout.date.label = require("locale").date(date, 1).slice(0, -5);
   layout.render();
+  
+  //update steps
+  //layout.steps.label = '' + Bangle.getHealthStatus("day").steps;
+  layout.steps.label = Bangle.getHealthStatus("day").steps;
   
   //schedule a draw for the next minute
   if (drawTimeout) clearTimeout(drawTimeout);
