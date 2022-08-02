@@ -2,7 +2,7 @@
   "id": "teacherclk",
   "name": "Teacher Clock",
   "version": "0.01",
-  "description": "A clock for teachers",
+  "description": "A watch face for teachers",
   "readme": "README.md",
   "icon": "teacherclk.png",
   "screenshots": [{"url":"screenshot_teacherclk.png"}],
