@@ -11,8 +11,10 @@ var layout = new Layout( {
         {type:"txt", font:"10%", label:"Day", id:"day", },
         {type:"txt", font:"10%", label:"dd/mm", id:"date" },
       ]},
-      {type:"img", scale: 2, src:atob("CgoCLguH9f2/7+v6/79f56CtAAAD9fw/n8Hx9A==")},
-      {type:"txt", font:"10%", label:Bangle.getHealthStatus("day").steps, id:"steps", fillx:1}
+      {type:"v", fillx:1, c: [
+        {type:"img", pad: 2, scale: 1.6, src:atob("CgoCLguH9f2/7+v6/79f56CtAAAD9fw/n8Hx9A==")},
+        {type:"txt", font:"10%", label:Bangle.getHealthStatus("day").steps, id:"steps"}
+      ]}
     ]},                    
     {type:"txt", font:"Anton", label:"12:00", id:"time" }
   ]
