@@ -3,4 +3,5 @@ Mettre le jour et la date l'un au dessus de l'autre,
 comme ça on peut mettre d'autres trucs au dessus de l'heure (avec dessin sympa cf pebble ?))
 Mettre un fond d'écran (frankenwinnie, attention l'heure (mais pas le reste) est dans un carré blanc)
 Levé et couché soleil ?
-Et batterie et lock
+lock
+batterie devient jaune puis rouge 
