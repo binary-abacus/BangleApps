@@ -36,7 +36,7 @@ var layout = new Layout( {
       {type:"custom", render:renderBattery, id:"battery", width:10, height:20, valign:0, halign:0, fillx:1}
     ]},         
     // time
-    {type:"txt", font:"Anton", label:"12:00", id:"time" }
+    {type:"txt", font:"Anton", label:"12:00", id:"time"}
   ]
 });
 
@@ -47,7 +47,7 @@ var drawTimeout;
 function draw() {
   // update time
   var date = new Date(); 
-  layout.clear(layout.time);
+  g.clearRect(0, layout.time.y, 176, layout.time.y+layout.time.h);
   layout.time.label = require("locale").time(date, 1);
   
   //update date
