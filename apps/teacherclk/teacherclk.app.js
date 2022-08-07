@@ -7,38 +7,39 @@ function renderBattery(l) {
   g.reset();
   g.setColor(g.theme.fg);
   x = l.x+5;
-  y = l.y-(l.h/4);
+  y = l.y;
   w = l.w-10;
-  h = l.h;
-  g.fillRect(x,y+2,x+w-4,y+2+h); // outer
-  g.clearRect(x+2,y+2+2,x+w-4-2,y+2+h-2); // centre
+  h = l.h-2;
+  g.fillRect(x,y,x+w-4,y+h); // outer
+  g.clearRect(x+2,y+2,x+w-4-2,y+h-2); // centre
   g.setColor(g.theme.fg);
-  g.fillRect(x+w-3,y+2+(((h - 1)/2)-1),x+w-2,y+2+(((h - 1)/2)-1)+4); // contact
-  g.setColor(0, 1, 0);
-  g.fillRect(x+3, y+5, x +3 + E.getBattery()*(w-10)/100, y+h-1); // the level
+  g.fillRect(x+w-3,y+(((h - 1)/2)-1),x+w-2,y+(((h - 1)/2)-1)+4); // contact
+  //g.setColor(0, 1, 0);
+  g.fillRect(x+3, y+3, x +3 + E.getBattery()*(w-10)/100, y-2+h-1); // the level
 }
 
 var Layout = require("Layout");
-var layout = new Layout( {
-  type:"v", c: [
-    {type:"h", c: [
+var layout = new Layout( 
+  {type:"v", c: [
+    {type:"h", height:45, c: [
       // day and date
-      {type:"v", c: [
-        {type:"txt", font:"10%", label:"Day", id:"day", },
-        {type:"txt", font:"10%", label:"dd/mm", id:"date" },
+      {type:"v", width:0, fillx:1, c: [
+        {type:"txt", font:"9%", label:"Day", id:"day", },
+        {type:"txt", font:"9%", label:"dd/mm", id:"date" },
       ]},
       // steps
-      {type:"h", c: [
-        {type:"img", pad:2, scale: 1, src:atob("FBQBDgAB8AAfAAPwAD8AA/B4Pw+B8PgeD8Hg/AAPwPD4Dw+A8HgHA4AAAAAPAADwAA8AAOA=")},
-        {type:"txt", font:"10%", label:Bangle.getHealthStatus("day").steps, id:"steps"}
+      {type:"h", fillx:2, c: [
+        {type:"img", pad:0, scale: 1, src:atob("FBQBDgAB8AAfAAPwAD8AA/B4Pw+B8PgeD8Hg/AAPwPD4Dw+A8HgHA4AAAAAPAADwAA8AAOA=")},
+        {type:"txt", font:"9%", label:Bangle.getHealthStatus("day").steps, id:"steps"}
       ]},
       // battery
-      {type:"custom", render:renderBattery, id:"battery", width:10, height:20, valign:0, halign:0, fillx:1}
+      {type:"custom", render:renderBattery, id:"battery", width:45, height:20}
     ]},         
     // time
-    {type:"txt", font:"Anton", label:"12:00", id:"time"}
-  ]
-});
+    {type:"txt", font:"Anton", label:"12:00", id:"time"}, 
+    {type:"txt", font:"10%", label:"", id:"blank", filly:1}
+  ]}
+  , {lazy:true});
 
 // timeout used to update every minute
 var drawTimeout;
@@ -47,24 +48,21 @@ var drawTimeout;
 function draw() {
   // update time
   var date = new Date(); 
-  g.clearRect(0, layout.time.y, 176, layout.time.y+layout.time.h);
   layout.time.label = require("locale").time(date, 1);
   
   //update date
   datestr = require("locale").date(date, 1).slice(0, -5);
   if (layout.date.label != datestr){
-    layout.clear(layout.date);
-    layout.clear(layout.day);
     day = require("locale").dow(date);
     layout.day.label = day.slice(0, 1).toUpperCase() + day.slice(1, 3);
-    layout.date.label = datestr
+    layout.date.label = datestr;
   }
   
   //update steps
-  layout.clear(layout.steps);
   layout.steps.label = Bangle.getHealthStatus("day").steps;
-
+  
   //draw
+  layout.update();
   layout.render();
   
   //schedule a draw for the next minute
@@ -78,6 +76,3 @@ function draw() {
 g.clear();
 layout.render();
 draw();
-
-Bangle.loadWidgets();
-Bangle.drawWidgets();

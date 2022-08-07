@@ -6,4 +6,4 @@ Levé et couché soleil ?
 Affiche dans l'ordre les deux prochains levés et couchés de soleil
 Mais le derner ne disparaît pas tout de suite (si le couché est à 21h, a 21h02 on l'affiche encore))
 lock
-batterie devient jaune puis rouge 
+batterie devient jaune puis rouge
