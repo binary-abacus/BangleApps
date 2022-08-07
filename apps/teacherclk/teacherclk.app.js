@@ -76,3 +76,4 @@ function draw() {
 g.clear();
 layout.render();
 draw();
+Bangle.setUI("clock");
